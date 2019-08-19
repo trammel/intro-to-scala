@@ -74,7 +74,9 @@ object NullExercises {
     * scala> mkPersonOrNull("Bob", -1)
     * = null
     **/
-  def mkPersonOrNull(name: String, age: Int): Person = ???
+  def mkPersonOrNull(name: String, age: Int): Person =
+    if (name.nonEmpty && age >= 0) Person(name, age)
+    else null
 
   /**
     * scala> mkPersonOrNullThenChangeName("Bob", 20, "John")
@@ -88,9 +90,11 @@ object NullExercises {
     *
     * Hint: Use `mkPersonOrNull` and `changeName` (already implemented below)
     **/
-  def mkPersonOrNullThenChangeName(oldName: String, age: Int, newName: String): Person = ???
-
-  def changeName(newName: String, person: Person): Person = person.copy(name = newName)
+  def mkPersonOrNullThenChangeName(oldName: String, age: Int, newName: String): Person = {
+    val person: Person = mkPersonOrNull(oldName, age)
+    if (person != null) mkPersonOrNull(newName, person.age)
+    else null
+  }
 
   /**
     * Thought exercise: Does the following function return a `null`?
