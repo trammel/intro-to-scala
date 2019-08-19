@@ -18,7 +18,9 @@ object IntroExercises {
     * scala> add(1, 2)
     * = 3
     **/
-  def add(x: Int, y: Int): Int = ???
+  def add(x: Int, y: Int): Int = {
+    x + y
+  }
 
 
   /**
@@ -26,7 +28,7 @@ object IntroExercises {
     * scala> addCurried(1)(2)
     * = 3
     **/
-  def addCurried(x: Int)(y: Int): Int = ???
+  def addCurried(x: Int)(y: Int): Int = x + y
 
 
   /**
@@ -35,7 +37,11 @@ object IntroExercises {
     * = 9
     *
     **/
-  def add5(x: Int): Int = ???
+  def add5(x: Int): Int = {
+    val f: Int => Int = addCurried(5)
+    f(x)
+  }
+
 
   /**
     * Parametric types
@@ -43,18 +49,18 @@ object IntroExercises {
     * How many ways can you implement this function?
     * Note: Square brackets (Types at compile time), round brackets (Values at run time)
     */
-  def foo[A](a: A): A = ???
+  def foo[A](a: A): A = a
 
   /**
     * How about this one?
     */
-  def bar(a: Int): Int = ???
+  def bar(a: Int): Int = 120398120
 
   /**
     * What does the return type of this function tell us about
     * what it can do once implemented?
     */
-  def pandora(x: Int): Unit = ???
+  def pandora(x: Int): Unit = println(x)
 
   /**
     * scala> timesTwoIfEven(4)
@@ -64,7 +70,7 @@ object IntroExercises {
     *
     * Important: Every `if` must have an `else`! Otherwise your function is not total.
     */
-  def timesTwoIfEven(x: Int): Int = ???
+  def timesTwoIfEven(x: Int): Int = if (x % 2 == 0) x * 2 else x
 
   /**
     * scala> showNumber(100)
@@ -72,23 +78,28 @@ object IntroExercises {
     *
     * Hint: Use string interpolation, e.g. s"$x"
     */
-  def showNumber(x: Int): String = ???
+  def showNumber(x: Int): String = s"The number is $x"
 
   /**
     * Tuples
     *
     * How can we group together `name` and `age` in a pair?
     */
-  def pair(name: String, age: Int): (String, Int) = ???
+  def pair(name: String, age: Int): (String, Int) = (name, age)
 
   /**
     * How can we extract the first element of a pair?
     */
-  def fst(pair: (String, Int)): String = ???
+  def fst(pair: (String, Int)): String = pair match {
+    case (first, _) => first
+  }
 
   /**
     * How can we extract the second element of a pair?
     */
-  def snd(pair: (String, Int)): Int = ???
+  def snd(pair: (String, Int)): Int = pair match {
+    case (_, banana) => banana
+
+  }
 
 }
