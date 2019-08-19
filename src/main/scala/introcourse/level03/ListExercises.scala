@@ -242,13 +242,8 @@ object ListExercises {
     * Rewrite this function that uses a mutable variable and for-loop in an immutable fashion
     */
   @SuppressWarnings(Array("org.wartremover.warts.Var"))
-  def getNames(persons: List[Person]): List[String] = {
-    var names: List[String] = Nil
-    for (person <- persons) {
-      names = names :+ person.name
-    }
-    names
-  }
+  def getNames(persons: List[Person]): List[String] =
+    persons.map(person => person.name)
 
   /**
     * Rewrite this function that uses a mutable variable and for-loop in an immutable fashion
@@ -256,15 +251,8 @@ object ListExercises {
     * Return people aged >= 18
     */
   @SuppressWarnings(Array("org.wartremover.warts.Var"))
-  def getAdults(persons: List[Person]): List[Person] = {
-    var adults: List[Person] = Nil
-    for (person <- persons) {
-      if (person.age >= 18)
-        adults = adults :+ person
-    }
-    adults
-  }
-
+  def getAdults(persons: List[Person]): List[Person] =
+    persons.filter(person => person.age >= 18)
 
   /**
     * Rewrite this function that uses mutable variables and for-loop in an immutable fashion
@@ -272,13 +260,8 @@ object ListExercises {
     * Don't use `.reverse` because that's cheating ;)
     */
   @SuppressWarnings(Array("org.wartremover.warts.Var"))
-  def reverseList[A](xs: List[A]): List[A] = {
-    var result: List[A] = Nil
-    for (x <- xs) {
-      result = x :: result
-    }
-    result
-  }
+  def reverseList[A](xs: List[A]): List[A] =
+    xs.foldLeft(List.empty[A])((acc, x) => x :: acc)
 
   /**
     * Pack consecutive duplicates of list elements into sublists.
